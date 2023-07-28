@@ -1,0 +1,12 @@
+{
+  "name": "garudakuapplication",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/dheoab/GarudakuApplication.git",
+  "author": "dheoAb <dheo.abdillah@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@vue/cli": "^5.0.8",
+    "vue": "^2"
+  }
+}
