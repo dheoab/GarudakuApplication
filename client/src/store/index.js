@@ -7,11 +7,16 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     news: {},
+    detailNews: {},
   },
   getters: {},
   mutations: {
     updateNews(state, data) {
       state.news = data;
+    },
+
+    updateDetailNews(state, data) {
+      state.detailNews = data;
     },
   },
   actions: {
@@ -28,36 +33,19 @@ export default new Vuex.Store({
         console.log(error);
       }
     },
+    async fetchDetailNews(context, query) {
+      try {
+        let { data } = await axios.get(`${query}`);
+
+        console.log(data, `response Fetch Detail News`);
+
+        context.commit("updateDetailNews", data);
+
+        return data;
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
   modules: {},
 });
-
-// import { createStore } from "vuex";
-// import axios from "axios";
-
-// export default createStore({
-//   state: {
-//     indonesiaNews: {},
-//   },
-//   mutations: {
-//     updateIndonesiaNews(state, data) {
-//       state.indonesiaNews = data;
-//     },
-//   },
-
-//   actions: {
-//     async fetchIndonesiaNews(context) {
-//       try {
-//         const BASEURL = `https://jakpost.vercel.app/api/category/indonesia`;
-
-//         let { data } = await axios.get(`${BASEURL}`);
-
-//         console.log(data);
-
-//         context.commit("updateIndonesiaNews", data);
-//       } catch (error) {
-//         console.log(error);
-//       }
-//     },
-//   },
-// });

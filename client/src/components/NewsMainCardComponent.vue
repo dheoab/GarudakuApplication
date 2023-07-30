@@ -6,7 +6,12 @@ export default {
         return {
             mainNews: this.news.featured_post
         }
-    }
+    }, methods: {
+        goToDetail() {
+            console.log("goToDetail Hit");
+            this.$router.push(`/detail?url=${this.mainNews.link}`,)
+        }
+    },
 
 }
 </script>
@@ -15,7 +20,7 @@ export default {
     <div style="padding: 0;">
         <div v-if="(Object.keys('mainNews').length != 0)">
             <div class="category-name">News</div>
-            <div class="news-card-main">
+            <div class="news-card-main" @click="goToDetail">
                 <div class="news-card-main-text">
                     <div class="news-card-main-title-published">
                         {{ mainNews.pusblised_at }}

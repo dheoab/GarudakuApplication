@@ -1,12 +1,19 @@
 <script>
 export default {
     name: "NewsCard",
-    props: ['news']
+    props: ['news'],
+    methods: {
+        goToDetail() {
+            console.log("goToDetail Hit");
+            this.$router.push(`/detail?url=${this.news.link}`,)
+        }
+    },
+
 }
 </script>
 
 <template>
-    <div class="news-card">
+    <div class="news-card" @click="goToDetail">
         <div class="news-card-image">
             <img :src="news.image">
         </div>

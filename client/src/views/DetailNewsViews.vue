@@ -1,11 +1,35 @@
 <script>
 import EditButtonComponent from '@/components/EditButtonComponent.vue';
+import { mapState } from 'vuex';
 
 export default {
     name: 'DetailNews',
     components: {
         EditButtonComponent
-    }
+    },
+    data() {
+        return {
+            news: {}
+        }
+    },
+    computed: {
+        ...mapState(['detailNews'])
+    },
+    methods: {
+        async fetchDetail() {
+            await this.$store.dispatch('fetchDetailNews', this.$route.query.url)
+
+            this.news = this.detailNews.detail_post
+        }
+    },
+    mounted() {
+        console.log(this.$route.query.url, "query URL from Detail View");
+        this.$route.query.url;
+
+        this.fetchDetail()
+    },
+
+
 }
 </script>
 
@@ -13,26 +37,16 @@ export default {
     <div class="news-detail">
 
         <div class="news-detail-content-image">
-            <img src="https://img.jakpost.net/c/2023/07/14/2023_07_14_140293_1689330226._large.jpg" alt="">
+            <img :src="news.image">
         </div>
         <div class="news-detail-content">
             <div class="news-detail-content-published">
-                at, July 29, 2023
+                {{ news.pusblised_at }}
             </div>
             <div class="news-detail-content-title">
-                Airlangga fights back amid Golkar turmoil
+                {{ news.title }}
             </div>
-            <div class="news-detail-content-article">
-
-
-                Embattled Golkar Party chairman Airlangga Hartarto is scrambling to stymie a mounting challenge against his
-                leadership, as he seeks to steer the party into next year’s presidential election.\n\nDiscontent has grown
-                within Golkar over its “unclear” direction ahead of the election. Airlangga has been eyeing a chance to run
-                in the presidential race, but recent opinion polls show that his popularity remains persistently
-                low.\n\nReflecting on the situation, Airlangga has opened the possibility of backing the presidential bid of
-                Central Java Governor Ganjar Pranowo, who is among the top-three most popular presumptive candidates in
-                various polls.\n\nStarting from IDR 55,500/month\n\nOr let Google manage your subscription
-
+            <div class="news-detail-content-article" v-html="news.post_content">
             </div>
             <EditButtonComponent />
         </div>
@@ -45,9 +59,14 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 0;
+    margin-top: 60px;
+    padding-right: 180px;
+    padding-left: 180px;
 }
 
 .news-detail-content-image img {
+    max-width: 960px;
     object-fit: cover;
     border-radius: 3%;
 }
@@ -82,7 +101,7 @@ export default {
     margin-top: 24px;
     margin-bottom: 24px;
     font-size: 16px;
+    white-space: pre-line;
     text-align: justify;
-    text-justify: inter-word;
 }
 </style>

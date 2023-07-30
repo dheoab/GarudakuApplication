@@ -1,21 +1,22 @@
 <script>
-import HomeViews from './views/HomeViews.vue';
-
+import HeadersComponent from './components/HeadersComponent.vue';
+import NavbarComponent from './components/NavbarComponent.vue';
 
 export default {
   name: "App",
   components: {
-    HomeViews,
-
+    HeadersComponent,
+    NavbarComponent
   }
 }
 
 </script>
 
 <template>
-  <div class="app">
-    <HomeViews />
-
+  <div id="app">
+    <HeadersComponent />
+    <NavbarComponent />
+    <router-view />
   </div>
 </template>
 

@@ -14,7 +14,13 @@ export default {
 </template>
 
 <style>
-.headers .headers-webtitle {
+.headers {
+    margin: 0;
+    padding-right: 180px;
+    padding-left: 180px;
+}
+
+.headers-webtitle {
     margin-top: 30px;
     font-size: 48px;
     font-weight: 800;

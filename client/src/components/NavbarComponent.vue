@@ -20,6 +20,12 @@ export default {
 </template>
 
 <style>
+.navbar {
+    margin: 0;
+    padding-right: 180px;
+    padding-left: 180px;
+}
+
 .navbar-list {
     display: flex;
     justify-content: center;
