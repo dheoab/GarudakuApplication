@@ -24,7 +24,7 @@ export default {
     display: flex;
     justify-content: center;
     margin-top: 48px;
-    padding-bottom: 24px;
+    padding-bottom: 18px;
     border-bottom: solid #D0D1DB;
 }
 
@@ -35,6 +35,7 @@ export default {
 }
 
 .navbar-list li {
+    padding: 0 32px;
     display: inline;
     margin-right: 10px;
     font-size: 16px;
