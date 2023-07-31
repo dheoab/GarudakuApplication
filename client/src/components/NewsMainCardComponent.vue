@@ -10,6 +10,7 @@ export default {
         goToDetail() {
             console.log("goToDetail Hit");
             this.$router.push(`/detail?url=${this.mainNews.link}`,)
+            // this.$store.dispatch('storeLink', this.mainNews.link)
         }
     },
 

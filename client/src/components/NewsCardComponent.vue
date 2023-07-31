@@ -6,6 +6,7 @@ export default {
         goToDetail() {
             console.log("goToDetail Hit");
             this.$router.push(`/detail?url=${this.news.link}`,)
+
         }
     },
 

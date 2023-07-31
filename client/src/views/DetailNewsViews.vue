@@ -13,8 +13,9 @@ export default {
             newsString: ""
         }
     },
+
     computed: {
-        ...mapState(['detailNews', 'detailNewsString'])
+        ...mapState(['detailNews', 'detailNewsString', "editedNews", "editNewsLink"])
     },
     methods: {
         async fetchDetail() {
@@ -23,17 +24,34 @@ export default {
             this.news = this.detailNews.detail_post
             this.newsString = this.detailNewsString
 
-            console.log(this.news, "news dari DetailNewsPage");
-            console.log(this.newsString, "newsString dari DetailNewsPage");
         },
-
-
     },
     mounted() {
-        console.log(this.$route.query.url, "query URL from Detail View");
+        console.log(this.$route.query.url, "query URL");
+        console.log(this.editNewsLink, "<< editNewsLink");
         this.$route.query.url;
 
-        this.fetchDetail()
+        // if (this.editedNews.detail_post.image !== undefined && this.$route.query.url === this.editNewsLink) {
+        //     this.news = this.editedNews.detail_post
+        // } else if (this.editedNews.detail_post.image === undefined) {
+        //     this.fetchDetail()
+        // }
+
+        if (this.editedNews.detail_post.image === undefined) {
+            this.fetchDetail()
+        } else if (this.$route.query.url !== this.editNewsLink) {
+            this.fetchDetail()
+        } else if (this.editedNews.detail_post.image !== undefined) {
+            this.news = this.editedNews.detail_post
+        }
+
+        // if (this.$route.query.url === this.editNewsLink) {
+        //     console.log(this.editNewsLink, '<<<');
+        //     this.news = this.editedNews.detail_post
+        //     console.log("MASUK IF");
+        // } else if (this.editedNews.detail_post.image === undefined) {
+        //     this.fetchDetail()
+        // }
     },
 
 
@@ -46,7 +64,7 @@ export default {
             <img :src="news.image">
         </div>
         <div class="news-detail-content">
-            <div v-html="newsString" class="news-detail-string"></div>
+
             <div class="news-detail-content-published">
                 {{ news.pusblised_at }}
             </div>

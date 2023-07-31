@@ -9,6 +9,10 @@ export default new Vuex.Store({
     news: {},
     detailNews: {},
     detailNewsString: "",
+    editedNews: {
+      detail_post: {},
+    },
+    editNewsLink: "",
     loading: false,
   },
   getters: {},
@@ -26,6 +30,12 @@ export default new Vuex.Store({
     },
     setLoading(state, status) {
       state.loading = status;
+    },
+    updateEditNews(state, data) {
+      state.editedNews.detail_post = data;
+    },
+    updateEditNewsLink(state, data) {
+      state.editNewsLink = data;
     },
   },
   actions: {
@@ -67,13 +77,21 @@ export default new Vuex.Store({
           "<br /><br /><br />" +
           newsContentFormatted;
 
-        console.log(newsString);
         context.commit("updateDetailNewsString", newsString);
 
         return data;
       } catch (error) {
         console.log(error);
       }
+    },
+    editNews(context, editedNews) {
+      // console.log(editedNews, "<<editedNews store");
+      context.commit("updateEditNews", editedNews);
+      // console.log(context.state.editedNews, "state EditedNews Store");
+    },
+    storeLink(context, link) {
+      context.commit("updateEditNewsLink", link);
+      console.log(context.state.editNewsLink, "ini link");
     },
   },
   modules: {},

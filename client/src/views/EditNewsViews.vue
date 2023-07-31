@@ -8,12 +8,20 @@ export default {
             editedNews: {
                 image: "",
                 title: "",
-                post_content: ""
+                post_content: "",
+                pusblised_at: ""
             }
         }
     },
     computed: {
-        ...mapState(['detailNews', 'detailNewsString'])
+        ...mapState(['detailNews', 'detailNewsString', "editNewsLink"])
+    },
+    methods: {
+        async submitEdit() {
+            console.log(this.editedNews, "submitEdit methode");
+            this.$router.push(`/detail?url=${this.editNewsLink}`)
+            await this.$store.dispatch('editNews', this.editedNews)
+        }
     },
     mounted() {
 
@@ -21,6 +29,7 @@ export default {
         this.editedNews.image = news.image
         this.editedNews.title = news.title
         this.editedNews.post_content = news.post_content
+        this.editedNews.pusblised_at = news.pusblised_at
         console.log(this.editedNews, '<< ini detailNews');
     }
 }
@@ -28,6 +37,7 @@ export default {
 
 <template>
     <div class="edit-news">
+        <h1 style="text-align: center;">Edit Article</h1>
         <form>
             <div>
                 <div class="edit-news-image-label">
@@ -54,6 +64,9 @@ export default {
                     </ckeditor>
                 </div>
             </div>
+            <div>
+                <button class="edit-news-button" @click="submitEdit">Edit</button>
+            </div>
         </form>
     </div>
 </template>
@@ -73,16 +86,19 @@ export default {
 .edit-news-image-label {
     font-size: 16px;
     margin: 10px 0;
+    font-weight: 600;
 }
 
 .edit-news-title-label {
     font-size: 16px;
     margin: 10px 0;
+    font-weight: 600;
 }
 
 .edit-news-content-label {
     font-size: 16px;
     margin: 10px 0;
+    font-weight: 600;
 }
 
 .edit-news-image-input input {
@@ -103,9 +119,19 @@ export default {
     background-color: white;
     border-radius: 4px;
 
+
 }
 
-.edit-news-ckeditor {
-    min-height: 500px;
+.edit-news-button {
+    margin-top: 30px;
+    background-color: rgb(110, 109, 109);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 12px;
 }
 </style>
