@@ -13,18 +13,37 @@ export default {
         // DetailNewsViews
 
     },
+    data() {
+        return {
+            localNews: {}
+        }
+    },
     computed: {
-        ...mapState(["news"])
+        ...mapState(["news", "loading"])
     },
 
     methods: {
+        async fetchNews(query = "indonesia") {
 
+            await this.$store.dispatch('fetchNews', query)
+
+
+
+            this.localNews = await this.news
+            console.log(this.news, '<<< ini news');
+        }
     },
     created() {
         console.log('created HomeView jalan');
-        this.$store.dispatch('fetchNews', 'indonesia')
-    }
+        this.fetchNews(this.$route.query.url || 'indonesia');
 
+    }, watch: {
+        '$route'(to, from) {
+            if (to.query.url !== from.query.url) {
+                this.fetchNews(to.query.url || 'indonesia');
+            }
+        }
+    },
 
 }
 
@@ -32,12 +51,15 @@ export default {
 
 <template>
     <div class="home-page">
-        <div v-if="Object.keys(news).length != 0">
+        <div v-if="!loading && Object.keys(news).length !== 0">
             <NewsMainCardComponent :news="news" />
             <NewsCardsTemplateComponent :news="news" />
         </div>
+        <div v-else-if="loading">
+            Loading....
+        </div>
         <div v-else>
-            loading
+            No data available.
         </div>
     </div>
 </template>

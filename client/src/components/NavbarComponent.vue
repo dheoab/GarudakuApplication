@@ -1,6 +1,13 @@
 <script>
 export default {
     name: "NavbarComponent",
+    methods: {
+        goToHome(query) {
+            console.log(query);
+            this.$router.push({ name: 'home', query: { url: `${query}` } }).catch(() => { });
+        }
+    },
+
 }
 
 </script>
@@ -8,13 +15,13 @@ export default {
 <template>
     <div class="navbar">
         <ul class="navbar-list">
-            <li>News</li>
-            <li>Tech</li>
-            <li>Sports</li>
-            <li>Entertaiment</li>
-            <li>Lifestyle</li>
-            <li>Bussiness</li>
-            <li>World</li>
+            <li @click="goToHome('indonesia')">News</li>
+            <li @click="goToHome('business/tech')">Tech</li>
+            <li @click="goToHome('life/health')">Health</li>
+            <li @click="goToHome('life/entertainment')">Entertaiment</li>
+            <li @click="goToHome('life/style')">Lifestyle</li>
+            <li @click="goToHome('business')">Bussiness</li>
+            <li @click="goToHome('world')">World</li>
         </ul>
     </div>
 </template>

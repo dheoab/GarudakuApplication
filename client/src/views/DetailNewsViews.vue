@@ -9,17 +9,22 @@ export default {
     },
     data() {
         return {
-            news: {}
+            news: {},
+            newsString: ""
         }
     },
     computed: {
-        ...mapState(['detailNews'])
+        ...mapState(['detailNews', 'detailNewsString'])
     },
     methods: {
         async fetchDetail() {
             await this.$store.dispatch('fetchDetailNews', this.$route.query.url)
 
             this.news = this.detailNews.detail_post
+            this.newsString = this.detailNewsString
+
+            console.log(this.news, "news dari DetailNewsPage");
+            console.log(this.newsString, "newsString dari DetailNewsPage");
         }
     },
     mounted() {
@@ -34,12 +39,12 @@ export default {
 </script>
 
 <template>
-    <div class="news-detail">
-
+    <div class="news-detail" v-if="news.title !== undefined">
         <div class="news-detail-content-image">
             <img :src="news.image">
         </div>
         <div class="news-detail-content">
+            <div v-html="newsString" class="news-detail-string"></div>
             <div class="news-detail-content-published">
                 {{ news.pusblised_at }}
             </div>
@@ -50,6 +55,9 @@ export default {
             </div>
             <EditButtonComponent />
         </div>
+    </div>
+    <div class="news-detail" v-else>
+        loading
     </div>
 </template>
 
@@ -65,6 +73,8 @@ export default {
     padding-left: 180px;
 }
 
+
+
 .news-detail-content-image img {
     max-width: 960px;
     object-fit: cover;
@@ -72,13 +82,17 @@ export default {
 }
 
 .news-detail-content {
-    max-width: 75%;
+    max-width: 60%;
     margin-top: -250px;
     margin-bottom: 300px;
     background-color: #F6F4EF;
     padding: 48px;
     border-radius: 16px;
 
+}
+
+.news-detail-string {
+    white-space: pre-line;
 }
 
 .news-detail-content-published {
