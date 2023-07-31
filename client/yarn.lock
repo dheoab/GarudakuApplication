@@ -2241,6 +2241,18 @@ ci-info@^1.5.0:
   resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-1.6.0.tgz#2ca20dbb9ceb32d4524a683303313f0304b1e497"
   integrity sha512-vsGdkwSCDpWmP80ncATX7iea5DWQemg1UgCW5J8tqjU3lYw4FBYuj89J0CTVomA7BEfvSZd84GmHko+MxFQU2A==
 
+ckeditor4-integrations-common@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ckeditor4-integrations-common/-/ckeditor4-integrations-common-1.0.0.tgz#a8afc33b94877b4d01362c7c73aa9eec162b2d20"
+  integrity sha512-OAoQT/gYrHkg0qgzf6MS/rndYhq3SScLVQ3rtXQeuCE8ju7nFHg3qZ7WGA2XpFxcZzsMP6hhugXqdel5vbcC3g==
+
+ckeditor4-vue@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/ckeditor4-vue/-/ckeditor4-vue-2.4.0.tgz#290a3760c62ae2f9ea6f78738f14a1ef49b91238"
+  integrity sha512-FHYCO2OUq1u50QSi6W7V/Q/rXbsQJVvCTev/KQHTl9K/2a1mJ0il2WsIbsD2i3jhgGZ9hJQ5zvbKyRUUs9dU+A==
+  dependencies:
+    ckeditor4-integrations-common "^1.0.0"
+
 clean-css@^5.2.2:
   version "5.3.2"
   resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-5.3.2.tgz#70ecc7d4d4114921f5d298349ff86a31a9975224"

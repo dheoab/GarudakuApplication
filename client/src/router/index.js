@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeView from "@/views/HomeViews.vue";
 import DetailNewsView from "@/views/DetailNewsViews.vue";
+import EditNewsView from "@/views/EditNewsViews.vue";
 
 Vue.use(VueRouter);
 
@@ -12,13 +13,14 @@ const routes = [
     component: HomeView,
   },
   {
-    path: "/category/:name",
-    name: "news",
-  },
-  {
     path: "/detail",
     name: "detail",
     component: DetailNewsView,
+  },
+  {
+    path: "/edit",
+    name: "edit",
+    component: EditNewsView,
   },
 ];
 

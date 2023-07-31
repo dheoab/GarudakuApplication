@@ -25,7 +25,9 @@ export default {
 
             console.log(this.news, "news dari DetailNewsPage");
             console.log(this.newsString, "newsString dari DetailNewsPage");
-        }
+        },
+
+
     },
     mounted() {
         console.log(this.$route.query.url, "query URL from Detail View");

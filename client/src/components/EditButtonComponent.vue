@@ -1,11 +1,19 @@
 <script>
 export default {
-    name: "EditButton"
+    name: "EditButton",
+    methods: {
+        goToEdit() {
+            console.log('GoToEdit Hit');
+            this.$router.push(`/edit`)
+
+        }
+    },
+
 }
 </script>
 
 <template>
-    <div class="edit-button">
+    <div class="edit-button" @click="goToEdit">
         <button>
             edit
         </button>
